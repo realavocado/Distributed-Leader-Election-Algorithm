@@ -94,6 +94,7 @@ public class LCR_Algorithm {
     }
 
     //LCR algorithm in a ring (synchronous)
+    //temporarily useless
     public static void LCR(Ring ring) {
         boolean flag = true;
         int numOfRounds = ring.getNumOfRounds();
@@ -141,7 +142,7 @@ public class LCR_Algorithm {
         System.out.println("[ The Procedure of main ring. ]");
         LCR_Algorithm.asyncLCR(mainRing, 1);
     }
-    
+
     public static void main(String[] args) {
         Ring ring = new Ring(15);
         Ring.giveIdOverRings();
