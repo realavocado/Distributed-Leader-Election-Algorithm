@@ -6,4 +6,6 @@
 --2月20凌晨更新：每个interface processor在醒来之前，所显示的信息全都是-1.醒来之后才会被附上它对应
 的sub-ring的leader的unique ID。 完成了上一版想要完善的点。
 
---2月25日晚更新：可以给processor的ID进行升序和降序的分配
+--2月24日晚更新：可以给processor的ID进行升序和降序的分配
+
+--2月25日：完成了用户交互界面，node的状态多了一个subordinate

@@ -110,6 +110,16 @@ public class Ring {
         return num;
     }
 
+    //discriminate between leader and non-leader
+    public void updateStatus() {
+        for (int i = 0; i < processorList.size(); i++) {
+            Node node = (Node) processorList.get(i);
+            if (node != leader) {
+                node.status = Node.Status.subordinate;
+            }
+        }
+    }
+
     //total processor numbers of all rings
     public static int getTotalNumOfProcessor() {
         int sum = 0;
@@ -188,7 +198,7 @@ public class Ring {
                 Ring ring_ahead = (Ring) totalRing.get(i - 1);
                 Ring ring_current = (Ring) totalRing.get(i);
                 sum = sum + ring_ahead.processorList.size();
-                List ID_list = randomNumberList.subList(sum , sum + ring_current.processorList.size());
+                List ID_list = randomNumberList.subList(sum, sum + ring_current.processorList.size());
                 Collections.sort(ID_list);
                 for (int j = 0; j < ring_current.processorList.size(); j++) {
                     Node node = (Node) ring_current.processorList.get(j);
@@ -218,7 +228,7 @@ public class Ring {
                 Ring ring_ahead = (Ring) totalRing.get(i - 1);
                 Ring ring_current = (Ring) totalRing.get(i);
                 sum = sum + ring_ahead.processorList.size();
-                List ID_list = randomNumberList.subList(sum , sum + ring_current.processorList.size());
+                List ID_list = randomNumberList.subList(sum, sum + ring_current.processorList.size());
                 Collections.sort(ID_list);
                 Collections.reverse(ID_list);
                 for (int j = 0; j < ring_current.processorList.size(); j++) {

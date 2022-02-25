@@ -43,10 +43,9 @@ public class RingOfRingsDemo {
         System.out.println("Total number of messages:");
         System.out.println(Ring.getTotalNumOfMessages());*/
 
-        Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("--------------------------------------------------------------------------------------------");
-            System.out.println("                           Welcome to Ring of rings LCR Demo.");
+            System.out.println("                       Welcome to Ring of rings LCR-Algorithm Demo.");
             System.out.println("--------------------------------------------------------------------------------------------");
             System.out.println();
             System.out.println("To start this demo, you have to construct a Ring-of-rings model.");
@@ -148,17 +147,22 @@ public class RingOfRingsDemo {
                 ring.list();
                 System.out.println();
             }
+            System.out.println();
+            System.out.println("Press 'Enter' to continue'");
+            Scanner sc4 = new Scanner(System.in);
+            sc4.nextLine();
+
             System.out.println("----------------------------------------------------------------------------------------------------------------------");
             System.out.println("----------------------------------------------------------------------------------------------------------------------");
-            System.out.println("Now select which type of result of LCR you want to see:");
+            System.out.println("Now select which type of result of LCR-Algorithm you want to see:");
             System.out.println("Enter 1: show the whole detailed procedure of every round.");
             System.out.println("Enter 2: show the final result directly.");
             //int key = scanner.nextInt();
             int key = -1;
             while (true) {
-                Scanner sc4 = new Scanner(System.in);
-                if (sc4.hasNextInt()) {
-                    key = sc4.nextInt();
+                Scanner sc5 = new Scanner(System.in);
+                if (sc5.hasNextInt()) {
+                    key = sc5.nextInt();
                     if (key > 0 && key < 3) {
                         break;
                     }else {

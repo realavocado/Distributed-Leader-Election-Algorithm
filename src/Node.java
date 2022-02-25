@@ -4,14 +4,13 @@ public class Node {
     public int sendID;
     public int sendIDNextRound;
     public int awakeRound;
-    public int known_elected_id;
     public Ring linkedRing;
     public Node next;
     Status status;
     Progress progress;
 
     enum Status {
-        unknown, LEADER;
+        unknown, LEADER, subordinate;
     }
 
     enum Progress {
@@ -42,7 +41,6 @@ public class Node {
 
     public String toString() {
         return "Processor [index = " + index + " , uniqueID = " + uniqueID + " , sendID = " + sendID + " , status = " + status + " , progress = " + progress + "]";
-        //return "Processor [index = " + index + " , uniqueID = " + uniqueID + " , sendID = " + sendID + " , sendIDNextRound = " + sendIDNextRound + " , status = " + status + " , progress = " + progress + "]";
     }
 }
 

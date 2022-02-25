@@ -13,7 +13,7 @@ public class LCR_Algorithm {
             if (ring.randomNumberList.contains(processor.index)) {
                 processor.progress = Node.Progress.sleeping;
                 //Random r = new Random();
-                int round = r.nextInt(amount / 3) + 1;
+                int round = r.nextInt(3 * amount / 4) + 1;
                 processor.awakeRound = round;
             }
         }
@@ -51,7 +51,7 @@ public class LCR_Algorithm {
                 //show the result after this round
                 ring.list();
                 System.out.println();
-            }else{
+            } else {
                 for (int i = 0; i < Ring.interfaceList.size(); i++) {
                     Node interfaceProcessor = (Node) Ring.interfaceList.get(i);
                     //if this ring is the main ring and an interface node wakes up at this round
@@ -81,21 +81,19 @@ public class LCR_Algorithm {
                     }
                     if (processor.sendID == processor.next.uniqueID) {
                         ring.setLeader(processor.next);
+                        ring.updateStatus();
                         //got a leader in the subRing, then told interface processor
                         if (ring.getLinkNode() != null) {
                             ring.getLinkNode().awakeRound = numOfRounds + 1;
                             //share leaderID with interface processor
-                            //ring.getLinkNode().assignValue(ring.getLeader().uniqueID);
                         }
                         //show result of final round
-                        //if (num == 1) {
                         System.out.println("Round " + numOfRounds);
                         System.out.println();
                         System.out.println("The processor with unique ID " + ring.getLeader().uniqueID + " has claimed itself leader!");
                         System.out.println();
                         ring.list();
                         System.out.println();
-                        //}
                         flag = false;
                     }
                 }
