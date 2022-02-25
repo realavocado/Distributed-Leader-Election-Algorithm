@@ -39,11 +39,11 @@ public class LCR_Algorithm {
                 for (int i = 0; i < Ring.interfaceList.size(); i++) {
                     Node interfaceProcessor = (Node) Ring.interfaceList.get(i);
                     //if this ring is the main ring and an interface node wakes up at this round
-                    //tell the user it wakes up
                     if (numOfRounds == interfaceProcessor.awakeRound && ring.processorList.contains(interfaceProcessor)) {
                         //at the waking up round of interface, give it the uniqueID of its sub-ring
                         interfaceProcessor.assignValue(interfaceProcessor.linkedRing.getLeader().uniqueID);
                         System.out.println();
+                        //tell the user which interface wakes up
                         System.out.println("Interface processor with uniqueID " + interfaceProcessor.uniqueID + " becomes AWAKE at this round.");
                         System.out.println();
                     }
@@ -51,6 +51,15 @@ public class LCR_Algorithm {
                 //show the result after this round
                 ring.list();
                 System.out.println();
+            }else{
+                for (int i = 0; i < Ring.interfaceList.size(); i++) {
+                    Node interfaceProcessor = (Node) Ring.interfaceList.get(i);
+                    //if this ring is the main ring and an interface node wakes up at this round
+                    if (numOfRounds == interfaceProcessor.awakeRound && ring.processorList.contains(interfaceProcessor)) {
+                        //at the waking up round of interface, give it the uniqueID of its sub-ring
+                        interfaceProcessor.assignValue(interfaceProcessor.linkedRing.getLeader().uniqueID);
+                    }
+                }
             }
             numOfRounds++;
             ring.setNumOfRounds(numOfRounds);
@@ -131,8 +140,7 @@ public class LCR_Algorithm {
             //ring.LCR();
             System.out.println("----------------------------------------------------------------------------------------------------------------------");
             System.out.println("----------------------------------------------------------------------------------------------------------------------");
-            int index = i + 1;
-            System.out.println("[ The Procedure of sub ring " + index + "]");
+            System.out.println("[ The Procedure of sub ring " + i + "]");
             System.out.println();
             LCR_Algorithm.asyncLCR(ring, num);
             //ring.getLinkNode().assignValue(ring.getLeader().uniqueID);
