@@ -78,14 +78,14 @@ public class LCR_Algorithm {
                             //ring.getLinkNode().assignValue(ring.getLeader().uniqueID);
                         }
                         //show result of final round
-                        if (num == 1) {
-                            System.out.println("Round " + numOfRounds);
-                            System.out.println();
-                            System.out.println("The processor with unique ID " + ring.getLeader().uniqueID + " has claimed itself leader!");
-                            System.out.println();
-                            ring.list();
-                            System.out.println();
-                        }
+                        //if (num == 1) {
+                        System.out.println("Round " + numOfRounds);
+                        System.out.println();
+                        System.out.println("The processor with unique ID " + ring.getLeader().uniqueID + " has claimed itself leader!");
+                        System.out.println();
+                        ring.list();
+                        System.out.println();
+                        //}
                         flag = false;
                     }
                 }
@@ -124,23 +124,23 @@ public class LCR_Algorithm {
     }
 
     //Leader-Election for Rings of Rings
-    public static void globalLCR() {
+    public static void globalLCR(int num) {
         for (int i = 1; i < Ring.totalRing.size(); i++) {
             Ring ring = (Ring) Ring.totalRing.get(i);
             //ring.LCR();
             System.out.println("----------------------------------------------------------------------------------------------------------------------");
             System.out.println("----------------------------------------------------------------------------------------------------------------------");
-            int num = i + 1;
-            System.out.println("[ The Procedure of sub ring " + num + "]");
+            int index = i + 1;
+            System.out.println("[ The Procedure of sub ring " + index + "]");
             System.out.println();
-            LCR_Algorithm.asyncLCR(ring, 1);
+            LCR_Algorithm.asyncLCR(ring, num);
             //ring.getLinkNode().assignValue(ring.getLeader().uniqueID);
         }
         Ring mainRing = (Ring) Ring.totalRing.get(0);
         System.out.println("----------------------------------------------------------------------------------------------------------------------");
         System.out.println("----------------------------------------------------------------------------------------------------------------------");
         System.out.println("[ The Procedure of main ring. ]");
-        LCR_Algorithm.asyncLCR(mainRing, 1);
+        LCR_Algorithm.asyncLCR(mainRing, num);
     }
 
     public static void main(String[] args) {

@@ -38,9 +38,6 @@ public class Node {
         if (awakeRound == round) {
             progress = Progress.awake;
         }
-        /*if (linkedRing != null) {
-            assignValue(linkedRing.getLeader().uniqueID);
-        }*/
     }
 
     public String toString() {

@@ -30,26 +30,19 @@ public class RingOfRingsDemo {
         ring4.list();
         //LCR
         System.out.println();
-        LCR_Algorithm.globalLCR();
+        LCR_Algorithm.globalLCR(0);
         System.out.println("----------------------------------------------------------------------------------------------------------------------");
         System.out.println("----------------------------------------------------------------------------------------------------------------------");
         System.out.println("The main ring after LCR:");
         ring1.list();
-        /*System.out.println();
-        System.out.println("Sub-networks:");
-        System.out.println("Ring2:");
-        ring2.list();
-        System.out.println("Ring3:");
-        ring3.list();
-        System.out.println("Ring4");
-        ring4.list();
-        System.out.println();
-        System.out.println("Main ring leader:");
-        System.out.println(ring1.getLeader());
         System.out.println();
         System.out.println("Total number of rounds:");
         System.out.println(Ring.getTotalNumOfRounds());
         System.out.println("Total number of messages:");
-        System.out.println(Ring.getTotalNumOfMessages());*/
+        System.out.println(Ring.getTotalNumOfMessages());
+
+
+
+
     }
 }

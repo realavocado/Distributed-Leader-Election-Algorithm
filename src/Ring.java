@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -11,7 +12,7 @@ public class Ring {
     List processorList = new ArrayList();
 
     public static List interfaceList = new ArrayList();
-    public static List randomNumberList = new ArrayList();
+    public static List<Integer> randomNumberList = new ArrayList<>();
     public static List totalRing = new ArrayList(); //include main ring and sub-rings
 
     public Ring(int numOfProcessor) {
@@ -121,10 +122,8 @@ public class Ring {
 
     public static int getTotalNumOfRounds() {
         int sum = 0;
-        for (int i = 0; i < totalRing.size(); i++) {
-            Ring ring = (Ring) totalRing.get(i);
-            sum = sum + ring.numOfRounds;
-        }
+        Ring mainRing = (Ring) totalRing.get(0);
+        sum = mainRing.numOfRounds;
         return sum;
     }
 
@@ -165,6 +164,64 @@ public class Ring {
                 temp = temp.next;
                 if (temp == ring.getInitNode()) {
                     loop = false;
+                }
+            }
+        }
+    }
+
+    //construct IDs ascending clockwise
+    public static void giveIdAscendClockwise() {
+        int amount = getTotalNumOfProcessor();
+        generateRandomNumber(amount, 1, 3 * amount);
+        int sum = 0;
+
+        for (int i = 0; i < totalRing.size(); i++) {
+            if (i == 0) {
+                Ring ring = (Ring) totalRing.get(0);
+                List ID_list = randomNumberList.subList(0, ring.processorList.size());
+                Collections.sort(ID_list);
+                for (int j = 0; j < ring.processorList.size(); j++) {
+                    Node node = (Node) ring.processorList.get(j);
+                    node.assignValue((Integer) ID_list.get(j));
+                }
+            } else {
+                Ring ring_ahead = (Ring) totalRing.get(i - 1);
+                Ring ring_current = (Ring) totalRing.get(i);
+                List ID_list = randomNumberList.subList(sum + ring_ahead.processorList.size(), sum +ring_ahead.processorList.size() + ring_current.processorList.size());
+                Collections.sort(ID_list);
+                for (int j = 0; j < ring_current.processorList.size(); j++) {
+                    Node node = (Node) ring_current.processorList.get(j);
+                    node.assignValue((Integer) ID_list.get(j));
+                }
+            }
+        }
+    }
+
+    //construct IDs ascending counterclockwise
+    public static void giveIdAscendCounterClockwise() {
+        int amount = getTotalNumOfProcessor();
+        generateRandomNumber(amount, 1, 3 * amount);
+        int sum = 0;
+
+        for (int i = 0; i < totalRing.size(); i++) {
+            if (i == 0) {
+                Ring ring = (Ring) totalRing.get(0);
+                List ID_list = randomNumberList.subList(0, ring.processorList.size());
+                Collections.sort(ID_list);
+                Collections.reverse(ID_list);
+                for (int j = 0; j < ring.processorList.size(); j++) {
+                    Node node = (Node) ring.processorList.get(j);
+                    node.assignValue((Integer) ID_list.get(j));
+                }
+            } else {
+                Ring ring_ahead = (Ring) totalRing.get(i - 1);
+                Ring ring_current = (Ring) totalRing.get(i);
+                List ID_list = randomNumberList.subList(sum + ring_ahead.processorList.size(), sum +ring_ahead.processorList.size() + ring_current.processorList.size());
+                Collections.sort(ID_list);
+                Collections.reverse(ID_list);
+                for (int j = 0; j < ring_current.processorList.size(); j++) {
+                    Node node = (Node) ring_current.processorList.get(j);
+                    node.assignValue((Integer) ID_list.get(j));
                 }
             }
         }
@@ -215,6 +272,28 @@ public class Ring {
                 break;
             }
         }
+    }
+
+    public static void main(String[] args) {
+        Ring ring1 = new Ring(20);
+        //ring1.buildRing(20);
+        Ring ring2 = new Ring(23);
+        //ring2.buildRing(5);
+        Ring ring3 = new Ring(8);
+        //ring3.buildRing(8);
+        Ring ring4 = new Ring(12);
+        Ring.giveIdAscendCounterClockwise();
+        System.out.println("Main ring:");
+        ring1.list();
+        System.out.println();
+        System.out.println("Ring2:");
+        ring2.list();
+        System.out.println();
+        System.out.println("Ring3:");
+        ring3.list();
+        System.out.println();
+        System.out.println("Ring4");
+        ring4.list();
     }
 
     /*//select asynchronous processors and their awake rounds
