@@ -20,6 +20,7 @@ public class LCR_Algorithm {
     }
 
     //async-LCR  Choice A: display the final result. Choice B: display the process of every round
+    //num == 1: show the whole procedure; num == 0: just show the final result
     public static void asyncLCR(Ring ring, int num) {
         //LCR_Algorithm.decideAsyncNodesAndRounds(ring);
         boolean flag = true;

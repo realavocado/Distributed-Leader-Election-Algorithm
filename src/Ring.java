@@ -187,7 +187,8 @@ public class Ring {
             } else {
                 Ring ring_ahead = (Ring) totalRing.get(i - 1);
                 Ring ring_current = (Ring) totalRing.get(i);
-                List ID_list = randomNumberList.subList(sum + ring_ahead.processorList.size(), sum +ring_ahead.processorList.size() + ring_current.processorList.size());
+                sum = sum + ring_ahead.processorList.size();
+                List ID_list = randomNumberList.subList(sum , sum + ring_current.processorList.size());
                 Collections.sort(ID_list);
                 for (int j = 0; j < ring_current.processorList.size(); j++) {
                     Node node = (Node) ring_current.processorList.get(j);
@@ -216,7 +217,8 @@ public class Ring {
             } else {
                 Ring ring_ahead = (Ring) totalRing.get(i - 1);
                 Ring ring_current = (Ring) totalRing.get(i);
-                List ID_list = randomNumberList.subList(sum + ring_ahead.processorList.size(), sum +ring_ahead.processorList.size() + ring_current.processorList.size());
+                sum = sum + ring_ahead.processorList.size();
+                List ID_list = randomNumberList.subList(sum , sum + ring_current.processorList.size());
                 Collections.sort(ID_list);
                 Collections.reverse(ID_list);
                 for (int j = 0; j < ring_current.processorList.size(); j++) {
