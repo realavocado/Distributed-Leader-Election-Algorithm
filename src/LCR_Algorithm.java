@@ -151,11 +151,4 @@ public class LCR_Algorithm {
         System.out.println("[ The Procedure of main ring. ]");
         LCR_Algorithm.asyncLCR(mainRing, num);
     }
-
-    public static void main(String[] args) {
-        Ring ring = new Ring(15);
-        Ring.giveIdAscendClockwise();
-        decideAsyncNodesAndRounds(ring);
-        asyncLCR(ring, 1);
-    }
 }

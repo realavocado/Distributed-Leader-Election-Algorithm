@@ -94,16 +94,19 @@ public class RingOfRingsDemo {
             System.out.println("Enter 2: Ascend clockwise distribution");
             System.out.println("Enter 3: Ascend counterclockwise distribution");
 
-            int select = scanner.nextInt();
-            /*while (true) {
+            //int select = scanner.nextInt();
+            int select = -1;
+            while (true) {
                 Scanner sc3 = new Scanner(System.in);
-                if (sc3.hasNextInt() && 0 < sc3.nextInt() && sc3.nextInt() < 4) {
+                if (sc3.hasNextInt()) {
                     select = sc3.nextInt();
-                    break;
-                } else {
-                    System.out.println("Invalid input. Please enter a correct number.");
+                    if (select > 0 && select < 4) {
+                        break;
+                    }else {
+                        System.out.println("Invalid input. Please enter a correct number.");
+                    }
                 }
-            }*/
+            }
             switch (select) {
                 case 1:
                     Ring.giveIdOverRings();
@@ -150,16 +153,19 @@ public class RingOfRingsDemo {
             System.out.println("Now select which type of result of LCR you want to see:");
             System.out.println("Enter 1: show the whole detailed procedure of every round.");
             System.out.println("Enter 2: show the final result directly.");
-            int key = scanner.nextInt();
-            /*while (true) {
+            //int key = scanner.nextInt();
+            int key = -1;
+            while (true) {
                 Scanner sc4 = new Scanner(System.in);
-                if (sc4.hasNextInt() && 0 < sc4.nextInt() && sc3.nextInt() < 3) {
+                if (sc4.hasNextInt()) {
                     key = sc4.nextInt();
-                    break;
-                } else {
-                    System.out.println("Invalid input. Please enter a correct number.");
+                    if (key > 0 && key < 3) {
+                        break;
+                    }else {
+                        System.out.println("Invalid input. Please enter a correct number.");
+                    }
                 }
-            }*/
+            }
             System.out.println();
             switch (key) {
                 case 1:
