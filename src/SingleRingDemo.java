@@ -4,6 +4,7 @@ public class SingleRingDemo {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         while (true){
+            Ring.totalRing.clear();
             System.out.println("--------------------------------------------------------------------------------------------");
             System.out.println("                   Welcome to Single Ring Asynchronous LCR-Algorithm Demo.");
             System.out.println("--------------------------------------------------------------------------------------------");
