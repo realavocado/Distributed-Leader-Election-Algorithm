@@ -145,7 +145,7 @@ public class LCR_Algorithm {
 
     public static void main(String[] args) {
         Ring ring = new Ring(15);
-        Ring.giveIdOverRings();
+        Ring.giveIdAscendClockwise();
         decideAsyncNodesAndRounds(ring);
         asyncLCR(ring, 1);
     }
