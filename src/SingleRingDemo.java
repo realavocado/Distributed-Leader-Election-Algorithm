@@ -62,10 +62,10 @@ public class SingleRingDemo {
             System.out.println();
             switch (key) {
                 case 1:
-                    LCR_Algorithm.asyncLCR(ring,1);
+                    LCR_Algorithm.LCR(ring,1);
                     break;
                 case 2:
-                    LCR_Algorithm.asyncLCR(ring,0);
+                    LCR_Algorithm.LCR(ring,0);
                     break;
                 default:
                     break;

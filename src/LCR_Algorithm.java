@@ -12,16 +12,19 @@ public class LCR_Algorithm {
             Node processor = (Node) ring.processorList.get(i);
             if (ring.randomNumberList.contains(processor.index)) {
                 processor.progress = Node.Progress.sleeping;
-                //Random r = new Random();
                 int round = r.nextInt(3 * amount / 4) + 1;
                 processor.awakeRound = round;
             }
         }
     }
 
-    //async-LCR  Choice A: display the final result. Choice B: display the process of every round
-    //num == 1: show the whole procedure; num == 0: just show the final result
-    public static void asyncLCR(Ring ring, int num) {
+
+    /**
+     * LCR algorithm. Applicable to both synchronous and asynchronous condition.
+     * @param ring the ring goes through LCR
+     * @param num num == 1: show the whole procedure; num == 0: just show the final result
+     */
+    public static void LCR(Ring ring, int num) {
         //LCR_Algorithm.decideAsyncNodesAndRounds(ring);
         boolean flag = true;
         int numOfRounds = ring.getNumOfRounds();
@@ -101,6 +104,25 @@ public class LCR_Algorithm {
         }
     }
 
+    //Leader-Election for Rings of Rings
+    public static void globalLCR(int num) {
+        for (int i = 1; i < Ring.totalRing.size(); i++) {
+            Ring ring = (Ring) Ring.totalRing.get(i);
+            //ring.LCR();
+            System.out.println("----------------------------------------------------------------------------------------------------------------------");
+            System.out.println("----------------------------------------------------------------------------------------------------------------------");
+            System.out.println("[ The Procedure of sub ring " + i + "]");
+            System.out.println();
+            LCR_Algorithm.LCR(ring, num);
+            //ring.getLinkNode().assignValue(ring.getLeader().uniqueID);
+        }
+        Ring mainRing = (Ring) Ring.totalRing.get(0);
+        System.out.println("----------------------------------------------------------------------------------------------------------------------");
+        System.out.println("----------------------------------------------------------------------------------------------------------------------");
+        System.out.println("[ The Procedure of main ring. ]");
+        LCR_Algorithm.LCR(mainRing, num);
+    }
+
     //LCR algorithm in a ring (synchronous)
     //temporarily useless
     public static void LCR(Ring ring) {
@@ -129,24 +151,5 @@ public class LCR_Algorithm {
                 }
             }
         }
-    }
-
-    //Leader-Election for Rings of Rings
-    public static void globalLCR(int num) {
-        for (int i = 1; i < Ring.totalRing.size(); i++) {
-            Ring ring = (Ring) Ring.totalRing.get(i);
-            //ring.LCR();
-            System.out.println("----------------------------------------------------------------------------------------------------------------------");
-            System.out.println("----------------------------------------------------------------------------------------------------------------------");
-            System.out.println("[ The Procedure of sub ring " + i + "]");
-            System.out.println();
-            LCR_Algorithm.asyncLCR(ring, num);
-            //ring.getLinkNode().assignValue(ring.getLeader().uniqueID);
-        }
-        Ring mainRing = (Ring) Ring.totalRing.get(0);
-        System.out.println("----------------------------------------------------------------------------------------------------------------------");
-        System.out.println("----------------------------------------------------------------------------------------------------------------------");
-        System.out.println("[ The Procedure of main ring. ]");
-        LCR_Algorithm.asyncLCR(mainRing, num);
     }
 }

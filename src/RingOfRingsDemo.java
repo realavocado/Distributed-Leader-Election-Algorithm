@@ -10,6 +10,7 @@ public class RingOfRingsDemo {
             System.out.println();
             System.out.println("To start this demo, you have to construct a Ring-of-rings model.");
             System.out.println("It means you have to decide the number of rings and the number of processors in each ring.");
+            System.out.println("Notice：The amount of interface processors is the amount of total rings minus 1.");
             System.out.println();
             System.out.println("Now enter the total amount of rings (include main ring).");
             System.out.println("(If want to exit, just enter 0.)");
