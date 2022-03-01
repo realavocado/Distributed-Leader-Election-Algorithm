@@ -54,7 +54,6 @@ public class RingOfRingsDemo {
             System.out.println("Enter 2: Ascend clockwise distribution");
             System.out.println("Enter 3: Ascend counterclockwise distribution");
 
-            //int select = scanner.nextInt();
             int select = -1;
             while (true) {
                 Scanner sc3 = new Scanner(System.in);

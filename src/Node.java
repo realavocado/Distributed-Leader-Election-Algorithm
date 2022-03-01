@@ -40,7 +40,7 @@ public class Node {
     }
 
     public String toString() {
-        return "Processor [index = " + index + " , uniqueID = " + uniqueID + " , sendID = " + sendID + " , status = " + status + " , progress = " + progress + "]";
+        return "Processor [index = " + index + " , uniqueID = " + uniqueID + " , sendID = " + sendIDNextRound + " , status = " + status + " , progress = " + progress + "]";
     }
 }
 

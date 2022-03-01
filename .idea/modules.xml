@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RingOfRings.iml" filepath="$PROJECT_DIR$/RingOfRings.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LCR_Simulation.iml" filepath="$PROJECT_DIR$/LCR_Simulation.iml" />
     </modules>
   </component>
 </project>

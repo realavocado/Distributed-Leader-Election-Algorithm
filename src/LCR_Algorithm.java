@@ -21,8 +21,9 @@ public class LCR_Algorithm {
 
     /**
      * LCR algorithm. Applicable to both synchronous and asynchronous condition.
+     *
      * @param ring the ring goes through LCR
-     * @param num num == 1: show the whole procedure; num == 0: just show the final result
+     * @param num  num == 1: show the whole procedure; num == 0: just show the final result
      */
     public static void LCR(Ring ring, int num) {
         //LCR_Algorithm.decideAsyncNodesAndRounds(ring);
@@ -30,15 +31,13 @@ public class LCR_Algorithm {
         int numOfRounds = ring.getNumOfRounds();
         int numOfMessages = ring.getNumOfMessages();
         while (flag) {
-            //a new round starts
-            for (int i = 0; i < ring.processorList.size(); i++) {
-                Node processor = (Node) ring.processorList.get(i);
-                processor.isAwake(numOfRounds); //check in the new round whether there are any new processors waking up
-                processor.sendID = processor.sendIDNextRound; //update the sendID
-            }
             //show process of every round
             if (num == 1) {
-                System.out.println("Round " + numOfRounds);
+                if (numOfRounds == 0) {
+                    System.out.println("Initial state:");
+                } else {
+                    System.out.println("Round " + numOfRounds);
+                }
                 for (int i = 0; i < Ring.interfaceList.size(); i++) {
                     Node interfaceProcessor = (Node) Ring.interfaceList.get(i);
                     //if this ring is the main ring and an interface node wakes up at this round
@@ -47,7 +46,8 @@ public class LCR_Algorithm {
                         interfaceProcessor.assignValue(interfaceProcessor.linkedRing.getLeader().uniqueID);
                         System.out.println();
                         //tell the user which interface wakes up
-                        System.out.println("Interface processor with uniqueID " + interfaceProcessor.uniqueID + " becomes AWAKE at this round.");
+                        System.out.println("Interface processor with index " + interfaceProcessor.index + " becomes AWAKE at this round.");
+                        System.out.println("The maximum ID it receives from its sub-ring is " + interfaceProcessor.uniqueID + ", which is its unique ID now.");
                         System.out.println();
                     }
                 }
@@ -64,8 +64,14 @@ public class LCR_Algorithm {
                     }
                 }
             }
+            //a new round starts
             numOfRounds++;
             ring.setNumOfRounds(numOfRounds);
+            for (int i = 0; i < ring.processorList.size(); i++) {
+                Node processor = (Node) ring.processorList.get(i);
+                processor.isAwake(numOfRounds); //check in the new round whether there are any new processors waking up
+                processor.sendID = processor.sendIDNextRound; //update the sendID
+            }
             //procedure of sending messages in a round
             for (int i = 0; i < ring.processorList.size(); i++) {
                 Node processor = (Node) ring.processorList.get(i);
@@ -76,13 +82,15 @@ public class LCR_Algorithm {
                 }
                 //if current processor and the next processor are both awake, then transmit messages normally
                 if (processor.progress == Node.Progress.awake && processor.next.progress == Node.Progress.awake) {
-                    if (processor.sendID > processor.next.uniqueID) {
+                    if (processor.sendID > processor.next.sendID) {
                         //if sendID can pass, then there's a transmission of message
                         numOfMessages++;
                         ring.setNumOfMessages(numOfMessages);
                         processor.next.sendIDNextRound = processor.sendID;
                     }
                     if (processor.sendID == processor.next.uniqueID) {
+                        numOfMessages++;
+                        ring.setNumOfMessages(numOfMessages);
                         ring.setLeader(processor.next);
                         ring.updateStatus();
                         //got a leader in the subRing, then told interface processor

@@ -32,7 +32,44 @@ public class SingleRingDemo {
             }
 
             Ring ring = new Ring(num);
-            Ring.giveIdOverRings();
+            System.out.println();
+            System.out.println("Now decide the type of ID distribution over rings");
+            System.out.println("Enter 1: random distribution");
+            System.out.println("Enter 2: Ascend clockwise distribution");
+            System.out.println("Enter 3: Ascend counterclockwise distribution");
+
+            int select = -1;
+            while (true) {
+                Scanner sc2 = new Scanner(System.in);
+                if (sc2.hasNextInt()) {
+                    select = sc2.nextInt();
+                    if (select > 0 && select < 4) {
+                        break;
+                    }else {
+                        System.out.println("Invalid input. Please enter a correct number.");
+                    }
+                }
+            }
+            switch (select) {
+                case 1:
+                    Ring.giveIdOverRings();
+                    System.out.println();
+                    System.out.println("Random distribution finished");
+                    break;
+                case 2:
+                    Ring.giveIdAscendClockwise();
+                    System.out.println();
+                    System.out.println("Ascend clockwise distribution finished");
+                    break;
+                case 3:
+                    Ring.giveIdAscendCounterClockwise();
+                    System.out.println();
+                    System.out.println("Ascend counterclockwise distribution finished");
+                    break;
+                default:
+                    break;
+            }
+
             LCR_Algorithm.decideAsyncNodesAndRounds(ring);
             System.out.println();
             System.out.println("The ring initialized will be showed below (press 'Enter' to continue)");
@@ -49,9 +86,9 @@ public class SingleRingDemo {
             System.out.println("Enter 2: show the final result directly.");
             int key = -1;
             while (true) {
-                Scanner sc2 = new Scanner(System.in);
-                if (sc2.hasNextInt()) {
-                    key = sc2.nextInt();
+                Scanner sc3 = new Scanner(System.in);
+                if (sc3.hasNextInt()) {
+                    key = sc3.nextInt();
                     if (key > 0 && key < 3) {
                         break;
                     }else {
