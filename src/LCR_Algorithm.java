@@ -127,7 +127,6 @@ public class LCR_Algorithm {
     public static void globalLCR(int num) {
         for (int i = 1; i < Ring.totalRing.size(); i++) {
             Ring ring = (Ring) Ring.totalRing.get(i);
-            //ring.LCR();
             System.out.println("----------------------------------------------------------------------------------------------------------------------");
             System.out.println("----------------------------------------------------------------------------------------------------------------------");
             System.out.println("[ The Procedure of sub ring " + i + "]");

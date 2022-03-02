@@ -40,11 +40,24 @@ public class RingOfRingsDemo {
                 int amount = -1;
                 while (true) {
                     Scanner sc2 = new Scanner(System.in);
-                    if (sc2.hasNextInt()) {
-                        amount = sc2.nextInt();
-                        break;
+                    if (i == 0) {
+                        if (sc2.hasNextInt()) {
+                            amount = sc2.nextInt();
+                            if (amount > num - 1) {
+                                break;
+                            } else {
+                                System.out.println("The size of main ring must be larger than " + (num - 1) + ". Please enter correctly.");
+                            }
+                        }else {
+                            System.out.println("Invalid input. Please enter a correct number.");
+                        }
                     } else {
-                        System.out.println("Invalid input. Please enter a correct number.");
+                        if (sc2.hasNextInt()) {
+                            amount = sc2.nextInt();
+                            break;
+                        } else {
+                            System.out.println("Invalid input. Please enter a correct number.");
+                        }
                     }
                 }
                 Ring ring = new Ring(amount);
@@ -63,7 +76,7 @@ public class RingOfRingsDemo {
                     select = sc3.nextInt();
                     if (select > 0 && select < 4) {
                         break;
-                    }else {
+                    } else {
                         System.out.println("Invalid input. Please enter a correct number.");
                     }
                 }
@@ -127,7 +140,7 @@ public class RingOfRingsDemo {
                     key = sc5.nextInt();
                     if (key > 0 && key < 3) {
                         break;
-                    }else {
+                    } else {
                         System.out.println("Invalid input. Please enter a correct number.");
                     }
                 }
