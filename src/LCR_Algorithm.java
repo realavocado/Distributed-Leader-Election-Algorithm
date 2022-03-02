@@ -57,16 +57,7 @@ public class LCR_Algorithm {
                 //show the result after this round
                 ring.list();
                 System.out.println();
-            } /*else {
-                for (int i = 0; i < Ring.interfaceList.size(); i++) {
-                    Node interfaceProcessor = (Node) Ring.interfaceList.get(i);
-                    //if this ring is the main ring and an interface node wakes up at this round
-                    if (numOfRounds == interfaceProcessor.awakeRound && ring.processorList.contains(interfaceProcessor)) {
-                        //at the waking up round of interface, give it the uniqueID of its sub-ring
-                        interfaceProcessor.assignValue(interfaceProcessor.linkedRing.getLeader().uniqueID);
-                    }
-                }
-            }*/
+            }
             //a new round starts
             numOfRounds++;
             ring.setNumOfRounds(numOfRounds);

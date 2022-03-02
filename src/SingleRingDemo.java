@@ -109,6 +109,8 @@ public class SingleRingDemo {
                     break;
             }
             System.out.println();
+            System.out.println("======== The 'Leader' ID of all rings is " + ring.getLeader().uniqueID +" ========");
+            System.out.println();
             System.out.println("Total number of rounds:");
             System.out.println(ring.getNumOfRounds());
             System.out.println("Total number of messages:");
