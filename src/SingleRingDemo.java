@@ -34,6 +34,7 @@ public class SingleRingDemo {
             Ring ring = new Ring(num);
             System.out.println();
             System.out.println("Now decide the type of ID distribution over rings");
+            System.out.println("(The message transmitting direction is clockwise)");
             System.out.println("Enter 1: random distribution");
             System.out.println("Enter 2: Ascend clockwise distribution");
             System.out.println("Enter 3: Ascend counterclockwise distribution");

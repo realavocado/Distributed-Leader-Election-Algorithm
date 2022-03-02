@@ -30,6 +30,9 @@ public class LCR_Algorithm {
         boolean flag = true;
         int numOfRounds = ring.getNumOfRounds();
         int numOfMessages = ring.getNumOfMessages();
+        //every processor will transmit message at least one time
+        numOfMessages = numOfMessages + ring.getProcessorAmount(ring.getInitNode()) - 1;
+        ring.setNumOfMessages(numOfMessages);
         while (flag) {
             //show process of every round
             if (num == 1) {
@@ -54,7 +57,7 @@ public class LCR_Algorithm {
                 //show the result after this round
                 ring.list();
                 System.out.println();
-            } else {
+            } /*else {
                 for (int i = 0; i < Ring.interfaceList.size(); i++) {
                     Node interfaceProcessor = (Node) Ring.interfaceList.get(i);
                     //if this ring is the main ring and an interface node wakes up at this round
@@ -63,7 +66,7 @@ public class LCR_Algorithm {
                         interfaceProcessor.assignValue(interfaceProcessor.linkedRing.getLeader().uniqueID);
                     }
                 }
-            }
+            }*/
             //a new round starts
             numOfRounds++;
             ring.setNumOfRounds(numOfRounds);
@@ -72,11 +75,19 @@ public class LCR_Algorithm {
                 processor.isAwake(numOfRounds); //check in the new round whether there are any new processors waking up
                 processor.sendID = processor.sendIDNextRound; //update the sendID
             }
+            for (int i = 0; i < Ring.interfaceList.size(); i++) {
+                Node interfaceProcessor = (Node) Ring.interfaceList.get(i);
+                //if this ring is the main ring and an interface node wakes up at this round
+                if (numOfRounds == interfaceProcessor.awakeRound && ring.processorList.contains(interfaceProcessor)) {
+                    //at the waking up round of interface, give it the uniqueID of its sub-ring
+                    interfaceProcessor.assignValue(interfaceProcessor.linkedRing.getLeader().uniqueID);
+                }
+            }
             //procedure of sending messages in a round
             for (int i = 0; i < ring.processorList.size(); i++) {
                 Node processor = (Node) ring.processorList.get(i);
                 //if there's a processor asleep, then no message via this processor, it receives a message but the message is lost
-                if (processor.progress == Node.Progress.awake && processor.next.progress == Node.Progress.sleeping && processor.sendID > processor.next.sendID) {
+                if (processor.progress == Node.Progress.awake && processor.next.progress == Node.Progress.sleeping) {
                     numOfMessages++;
                     ring.setNumOfMessages(numOfMessages);
                 }
