@@ -29,39 +29,95 @@ public class RingOfRingsDemo {
             if (num == 0) {
                 break;
             }
-            for (int i = 0; i < num; i++) {
-                System.out.println();
-                if (i == 0) {
-                    System.out.println("Enter the amount of processors in the main ring.");
-                } else {
-                    ;
-                    System.out.println("Enter the amount of processors in the sub-ring " + i + ":");
+
+            System.out.println();
+            System.out.println("Here you have 2 choice:");
+            System.out.println("1. Construct each ring one by one. 2. Construct all rings at one time, in which case all the sub-ring will automatically have the same size.");
+            System.out.println("If the number of rings is very large, choice '2' is suggested.");
+            System.out.println("Enter '1' or '2' to choose:");
+            int branch = -1;
+            while(true){
+                Scanner key = new Scanner(System.in);
+                if (key.hasNextInt()) {
+                    branch = key.nextInt();
+                    if (branch == 1 || branch == 2) {
+                        break;
+                    } else {
+                        System.out.println("Invalid input. Please enter a correct number.");
+                    }
+                }else {
+                    System.out.println("Invalid input. Please enter a correct number.");
                 }
-                int amount = -1;
-                while (true) {
-                    Scanner sc2 = new Scanner(System.in);
+            }
+
+            if (branch==1) {
+                for (int i = 0; i < num; i++) {
+                    System.out.println();
                     if (i == 0) {
-                        if (sc2.hasNextInt()) {
-                            amount = sc2.nextInt();
-                            if (amount > num - 1) {
+                        System.out.println("Enter the amount of processors in the main ring.");
+                    } else {
+                        ;
+                        System.out.println("Enter the amount of processors in the sub-ring " + i + ":");
+                    }
+                    int amount = -1;
+                    while (true) {
+                        Scanner sc2 = new Scanner(System.in);
+                        if (i == 0) {
+                            if (sc2.hasNextInt()) {
+                                amount = sc2.nextInt();
+                                if (amount > num - 1) {
+                                    break;
+                                } else {
+                                    System.out.println("The size of main ring must be larger than " + (num - 1) + ". Please enter correctly.");
+                                }
+                            } else {
+                                System.out.println("Invalid input. Please enter a correct number.");
+                            }
+                        } else {
+                            if (sc2.hasNextInt()) {
+                                amount = sc2.nextInt();
                                 break;
                             } else {
-                                System.out.println("The size of main ring must be larger than " + (num - 1) + ". Please enter correctly.");
+                                System.out.println("Invalid input. Please enter a correct number.");
                             }
-                        }else {
-                            System.out.println("Invalid input. Please enter a correct number.");
-                        }
-                    } else {
-                        if (sc2.hasNextInt()) {
-                            amount = sc2.nextInt();
-                            break;
-                        } else {
-                            System.out.println("Invalid input. Please enter a correct number.");
                         }
                     }
+                    Ring ring = new Ring(amount);
                 }
-                Ring ring = new Ring(amount);
+            }else{
+                Scanner key2 = new Scanner(System.in);
+                System.out.println("Decide the number of processors in the main ring:");
+                int mainSize = -1;
+                while(true){
+                    if (key2.hasNextInt()) {
+                        mainSize = key2.nextInt();
+                        if (mainSize > num - 1) {
+                            break;
+                        } else {
+                            System.out.println("The size of main ring must be larger than " + (num - 1) + ". Please enter correctly.");
+                        }
+                    } else {
+                        System.out.println("Invalid input. Please enter a correct number.");
+                    }
+                }
+                Ring mainRing = new Ring(mainSize);
+
+                System.out.println();
+                System.out.println("Decide the number of processors in each sub-ring (all sub-rings have the same size)");
+                int subSize = -1;
+                while(true){
+                    if (key2.hasNextInt()) {
+                        subSize = key2.nextInt();
+                        break;
+                    } else {
+                        System.out.println("Invalid input. Please enter a correct number.");
+                    }
+                }
+                for (int i = 0; i < num-1; i++) {
+                    Ring subRing = new Ring(subSize);
+                }
             }
+
             System.out.println();
             System.out.println("Now decide the type of ID distribution over rings");
             System.out.println("(The message transmitting direction is clockwise)");
@@ -79,6 +135,8 @@ public class RingOfRingsDemo {
                     } else {
                         System.out.println("Invalid input. Please enter a correct number.");
                     }
+                }else {
+                    System.out.println("Invalid input. Please enter a correct number.");
                 }
             }
             switch (select) {
@@ -132,7 +190,7 @@ public class RingOfRingsDemo {
             System.out.println("Now select which type of result of LCR-Algorithm you want to see:");
             System.out.println("Enter 1: show the whole detailed procedure of every round.");
             System.out.println("Enter 2: show the final result directly.");
-            //int key = scanner.nextInt();
+
             int key = -1;
             while (true) {
                 Scanner sc5 = new Scanner(System.in);
@@ -143,6 +201,8 @@ public class RingOfRingsDemo {
                     } else {
                         System.out.println("Invalid input. Please enter a correct number.");
                     }
+                }else {
+                    System.out.println("Invalid input. Please enter a correct number.");
                 }
             }
             System.out.println();
@@ -166,8 +226,11 @@ public class RingOfRingsDemo {
             System.out.println("Demo finished.");
             System.out.println("----------------------------------");
             System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println("Press 'Enter' to start again");
+            Scanner sc6 = new Scanner(System.in);
+            sc6.nextLine();
         }
-
-
     }
 }

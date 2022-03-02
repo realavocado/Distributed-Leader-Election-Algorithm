@@ -139,6 +139,7 @@ public class LCR_Algorithm {
         System.out.println("----------------------------------------------------------------------------------------------------------------------");
         System.out.println("[ The Procedure of main ring. ]");
         LCR_Algorithm.LCR(mainRing, num);
+        System.out.println("======== The 'Leader' ID of all rings is " + mainRing.getLeader().uniqueID +" ========");
     }
 
     //LCR algorithm in a ring (synchronous)

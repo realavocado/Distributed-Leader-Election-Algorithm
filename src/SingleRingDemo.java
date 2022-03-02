@@ -118,7 +118,11 @@ public class SingleRingDemo {
             System.out.println("Demo finished.");
             System.out.println("----------------------------------");
             System.out.println();
-
+            System.out.println();
+            System.out.println();
+            System.out.println("Press 'Enter' to start again");
+            Scanner sc4 = new Scanner(System.in);
+            sc4.nextLine();
         }
     }
 }
