@@ -45,8 +45,6 @@ public class LCR_Algorithm {
                     Node interfaceProcessor = (Node) Ring.interfaceList.get(i);
                     //if this ring is the main ring and an interface node wakes up at this round
                     if (numOfRounds == interfaceProcessor.awakeRound && ring.processorList.contains(interfaceProcessor)) {
-                        //at the waking up round of interface, give it the uniqueID of its sub-ring
-                        interfaceProcessor.assignValue(interfaceProcessor.linkedRing.getLeader().uniqueID);
                         System.out.println();
                         //tell the user which interface wakes up
                         System.out.println("Interface processor with index " + interfaceProcessor.index + " becomes AWAKE at this round.");
