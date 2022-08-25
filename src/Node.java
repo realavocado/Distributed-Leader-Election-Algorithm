@@ -33,7 +33,7 @@ public class Node {
         this.sendIDNextRound = num;
     }
 
-    public void isAwake(int round) {
+    public void checkAwake(int round) {
         if (awakeRound == round) {
             progress = Progress.awake;
         }

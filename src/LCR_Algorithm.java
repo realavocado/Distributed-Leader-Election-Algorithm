@@ -61,7 +61,7 @@ public class LCR_Algorithm {
             ring.setNumOfRounds(numOfRounds);
             for (int i = 0; i < ring.processorList.size(); i++) {
                 Node processor = (Node) ring.processorList.get(i);
-                processor.isAwake(numOfRounds); //check in the new round whether there are any new processors waking up
+                processor.checkAwake(numOfRounds); //check in the new round whether there are any new processors waking up
                 processor.sendID = processor.sendIDNextRound; //update the sendID
             }
             for (int i = 0; i < Ring.interfaceList.size(); i++) {
